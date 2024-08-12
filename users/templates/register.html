@@ -1,0 +1,40 @@
+<!-- QuantumIndex/users/templates/register.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Registrazione{% endblock %}
+
+{% block content %}
+
+<h2>Registrazione</h2>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="first_name">Nome:</label>
+        <input type="text" name="first_name" required>
+    </div>
+    <div>
+        <label for="last_name">Cognome:</label>
+        <input type="text" name="last_name" required>
+    </div>
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" name="username" required>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" name="email" required>
+    </div>
+    <div>
+        <label for="password1">Password:</label>
+        <input type="password" name="password1" required>
+    </div>
+    <div>
+        <label for="password2">Conferma Password:</label>
+        <input type="password" name="password2" required>
+    </div>
+    <button type="submit">Registrati</button>
+</form>
+<p>Hai già un account? <a href="{% url 'users:login' %}">Accedi qui</a></p>
+
+{% endblock %}

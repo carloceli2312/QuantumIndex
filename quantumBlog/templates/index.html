@@ -1,0 +1,21 @@
+<!-- QuantumIndex/quantumBlog/templates/index.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <h1>Welcome to Our Blog</h1>
+    <h2>Recent Posts</h2>
+
+    <div class="row">
+        {% for post in recent_posts %}
+            {% include "post/post_card.html" with post=post %}
+        {% empty %}
+            <p>No recent posts available.</p>
+        {% endfor %}
+    </div>
+
+    <a href="{% url 'post_list' %}" class="btn btn-secondary">View All Posts</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+<!-- QuantumIndex/quantumBlog/templates/post/post_edit.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <div class="container mt-4">
+        
+        <h1>Modify post</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ post.title }}">
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea class="form-control" id="content" name="content" rows="3">{{ post.content }}</textarea>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="published" name="published" {% if post.published %}checked{% endif %}>
+                <label class="form-check-label" for="published">Publish</label>
+            </div>
+
+            <a href="{% url 'post_delete' post.id %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'post_detail' post.id %}" class="btn btn-secondary">Cancel</a>
+
+            <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+    </div>
+{% else %}
+    <p>You must be logged in to create a new post.</p>
+    <a href="{% url 'users:login' %}">Login</a>
+    <a href="{% url 'users:register' %}">Register</a>
+{% endif %}
+
+{% endblock %}

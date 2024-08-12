@@ -1,0 +1,26 @@
+<!-- QuantumIndex/users/templates/login.html -->
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<h2>Login</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="login_identifier">Email or Username</label>
+        <input class="form-control" id="login_identifier" name="login_identifier" placeholder="Enter email or username">
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+<p>Non hai un account? <a href="{% url 'users:register' %}">Registrati qui</a></p>
+
+{% endblock %}
