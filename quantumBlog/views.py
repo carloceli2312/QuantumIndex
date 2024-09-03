@@ -83,6 +83,13 @@ class PostLikeView(LoginRequiredMixin, View):
             post.likes.add(request.user)
         return HttpResponseRedirect(reverse('index'))
 
+@login_required
+def create_review(request, post_id):
+    if request.method == 'POST':
+        post = get_object_or_404(Post, id=post_id)
+        content = request.POST.get('content')
+        Review.objects.create(post=post, user=request.user, content=content)
+        return redirect('post_detail', pk=post_id)
 
 @login_required
 def delete_review(request, review_id):

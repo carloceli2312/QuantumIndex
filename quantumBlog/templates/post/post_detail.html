@@ -31,8 +31,9 @@
                 <div class="card bg-light">
                     <div class="card-body">
                         <!-- Comment form-->
-                        <form class="mb-4">
-                            <textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea>
+                        <form class="mb-4" method="post" action="{% url 'create_review' post.id %}">
+                            {% csrf_token %}
+                            <textarea class="form-control" rows="3" name="content" placeholder="Join the discussion and leave a comment!"></textarea>
                             <button type="submit" class="btn btn-primary mt-2">Submit Comment</button>
                         </form>
                         <!-- Comments list -->
