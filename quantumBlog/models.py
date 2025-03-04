@@ -16,12 +16,12 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    def total_likes(self):
-        return self.likes.count()
-    
     @property
     def summary(self):
         return self.content[:200] + '...' if len(self.content) > 200 else self.content
+
+    def total_likes(self):
+        return self.likes.count()
 
     def get_recent_reviews(self, limit=5):
         return self.reviews.order_by('-created_at')[:limit]
